@@ -11,21 +11,21 @@ jobs:
     env:
       BUCKET_NAME: cfst-3457-5c79171795b69229b99ca9c99-nonprodbucket-96crrqllheil
     steps:
-      -name: checkout code
+      - name: checkout code
        uses: actions/checkout@v2
-      -name: configure aws cli
+      - name: configure aws cli
        uses: aws-actions/configure-aws-credentials@v1
        with:
          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          aws-region: us-east-1
-      -name: set up node js
+      - name: set up node js
        uses: actions/setup-node@v2
        with:
          node-version: 14
-      -name: build site
+      - name: build site
         run: |
           npm ci
           npm run build
-      -name: deploy files to bucket
+      - name: deploy files to bucket
         run: aws s3 cp public s3://${{ env.BUCKET_NAME }}/ --recursive --acl public-read
