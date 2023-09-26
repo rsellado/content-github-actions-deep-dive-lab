@@ -8,8 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-      env:
-        BUCKET_NAME: cfst-3457-5c79171795b69229b99ca9c99-nonprodbucket-96crrqllheil
+    env:
+      BUCKET_NAME: cfst-3457-5c79171795b69229b99ca9c99-nonprodbucket-96crrqllheil
+    steps:
       -name: checkout code
        uses: actions/checkout@v2
       -name: configure aws cli
